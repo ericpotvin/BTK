@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+""" Generate Code Coverage
+"""
+import os
+import sys
+
+#
+# Add to path
+#
+
+sys.path.append('/opt/btk/')
+
+from constants import *
+from Collect import Collect
+from Report import Report
+
+
+if __name__ == "__main__":
+
+    if len(sys.argv) < 2:
+        print ("Usage: btkcc script.sh\n")
+        sys.exit(1)
+
+    if sys.argv[1:][0] == "--report":
+        REPORT = Report()
+        REPORT.generate()
+    else:
+
+        os.environ["PS4"] = \
+            PS4_DELIMITER + \
+            PS4_SEP + "${BASH_SOURCE}" + \
+            PS4_SEP + "${LINENO}" + \
+            PS4_SEP + PS4_DELIMITER + ":"
+
+        COLLECT = Collect()
+        COLLECT.process(sys.argv[1:])
+
+    sys.exit(0)

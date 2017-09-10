@@ -1,0 +1,7 @@
+.idea/
+*.pyc
+*.pyo
+*.tar.gz
+RPMS/
+SRPMS/
+BUILD/
